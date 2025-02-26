@@ -1,7 +1,8 @@
+import Categories from "./components/Categories";
 export default function Home() {
   return (
-    <main className="">
-      <p className="text-airbnb">Next Rules</p>
+    <main className="max-w-[1500px] mx-auto px-6 py-8">
+      <Categories />
     </main>
   );
 }

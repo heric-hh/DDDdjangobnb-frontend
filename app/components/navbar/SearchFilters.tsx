@@ -1,13 +1,13 @@
 const SearchFilters = () => {
   return (
-    <div className="h-[64px] flex flex-row items-center justify-between border rounded-full">
+    <div className="h-[48px] lg:h-[64px] flex flex-row items-center justify-between border rounded-full">
       <div className="hidden lg:block">
         <div className="flex flex-row items-center justify-between">
-          <div className="h-[64px] px-8 flex flex-col rounded-full justify-center hover:bg-gray-100 cursor-pointer">
+          <div className="h-[48px] lg:h-[64px] px-8 flex flex-col rounded-full justify-center hover:bg-gray-100 cursor-pointer">
             <p className="text-sm font-semibold">Where?</p>
             <p className="text-sm">Wanted Location</p>
           </div>
-          <div className="h-[64px] px-8 flex flex-col rounded-full justify-center hover:bg-gray-100 cursor-pointer">
+          <div className="h-[48px] lg:h-[64px] px-8 flex flex-col rounded-full justify-center hover:bg-gray-100 cursor-pointer">
             <p
               className="
           text-sm font-semibold"
@@ -16,7 +16,7 @@ const SearchFilters = () => {
             </p>
             <p className="text-sm">Add Dates</p>
           </div>
-          <div className="h-[64px] px-8 flex flex-col rounded-full justify-center hover:bg-gray-100 cursor-pointer">
+          <div className="h-[48px] lg:h-[64px] px-8 flex flex-col rounded-full justify-center hover:bg-gray-100 cursor-pointer">
             <p
               className="
           text-sm font-semibold"
@@ -25,7 +25,7 @@ const SearchFilters = () => {
             </p>
             <p className="text-sm">Add Dates</p>
           </div>
-          <div className="h-[64px] px-8 flex flex-col rounded-full justify-center hover:bg-gray-100  cursor-pointer">
+          <div className="h-[48px] lg:h-[64px] px-8 flex flex-col rounded-full justify-center hover:bg-gray-100  cursor-pointer">
             <p
               className="
           text-sm font-semibold"
@@ -37,7 +37,7 @@ const SearchFilters = () => {
         </div>
       </div>
       <div className="p-2">
-        <div className="p-4 bg-airbnb rounded-full text-white hover:bg-airbnbDark transition cursor-pointer">
+        <div className="lg:p-4 p-2 bg-airbnb  rounded-full text-white hover:bg-airbnbDark transition cursor-pointer">
           <svg
             viewBox="0 0 32 32"
             style={{
