@@ -4,16 +4,37 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import useSignupModal from "@/app/hooks/useSignupModal";
 import CustomButton from "../forms/CustomButton";
+import apiService from "../../services/apiService.ts";
+import { handleLogin} from "@/app/lib/actions";
+
 const SignupModal = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [password1, setPassword1] = useState("");
   const [password2, setPassword2] = useState("");
   const [errors, setErrors] = useState<string[]>([]);
   const signupModal = useSignupModal();
+  const submitSignup = async () => {
+    const formData = {
+      email: email,
+      password1: password1,
+      password2: password2
+    }
+    const response = await apiService.post("api/auth/register/", JSON.stringify(formData));
+    if(response.access) {
+      handleLogin(response.user.pk, response.access, response.refresh);
+      signupModal.close();
+      router.push("/");
+    } else {
+      const tmpErrors: string[] = Object.values(response).map((error: any) => {
+        return error;
+      })
+      setErrors(tmpErrors);
+    }
+  }
   const content = (
     <>
-      <form className="space-y-4">
+      <form className="space-y-4" action={submitSignup}>
         <input
           onChange={(e) => setEmail(e.target.value)}
           type="email"
@@ -21,7 +42,7 @@ const SignupModal = () => {
           className="w-full mb-3 p-3 border border-gray-300 rounded-xl"
         />
         <input
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => setPassword1(e.target.value)}
           type="password"
           placeholder="Password"
           className="w-full mb-3 p-3 border border-gray-300 rounded-xl"
@@ -42,7 +63,7 @@ const SignupModal = () => {
             </div>
           );
         })}
-        <CustomButton label="Sign Up" onClick={() => console.log("Clicked")} />
+        <CustomButton label="Sign Up" onClick={submitSignup} />
       </form>
     </>
   );
