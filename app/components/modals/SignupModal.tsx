@@ -1,37 +1,40 @@
-"use client";
-import Modal from "./Modal";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import useSignupModal from "@/app/hooks/useSignupModal";
-import CustomButton from "../forms/CustomButton";
-import apiService from "../../services/apiService.ts";
-import { handleLogin} from "@/app/lib/actions";
+'use client';
+import Modal from './Modal';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import useSignupModal from '@/app/hooks/useSignupModal';
+import CustomButton from '../forms/CustomButton';
+import apiService from '../../services/apiService.ts';
+import { handleLogin } from '@/app/lib/actions';
 
 const SignupModal = () => {
   const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [password1, setPassword1] = useState("");
-  const [password2, setPassword2] = useState("");
+  const [email, setEmail] = useState('');
+  const [password1, setPassword1] = useState('');
+  const [password2, setPassword2] = useState('');
   const [errors, setErrors] = useState<string[]>([]);
   const signupModal = useSignupModal();
   const submitSignup = async () => {
     const formData = {
       email: email,
       password1: password1,
-      password2: password2
-    }
-    const response = await apiService.post("api/auth/register/", JSON.stringify(formData));
-    if(response.access) {
+      password2: password2,
+    };
+    const response = await apiService.post(
+      'api/auth/register/',
+      JSON.stringify(formData)
+    );
+    if (response.access) {
       handleLogin(response.user.pk, response.access, response.refresh);
       signupModal.close();
-      router.push("/");
+      router.push('/');
     } else {
       const tmpErrors: string[] = Object.values(response).map((error: any) => {
         return error;
-      })
+      });
       setErrors(tmpErrors);
     }
-  }
+  };
   const content = (
     <>
       <form className="space-y-4" action={submitSignup}>
