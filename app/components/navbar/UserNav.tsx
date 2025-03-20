@@ -3,7 +3,7 @@ import { useState } from 'react';
 import MenuLink from './MenuLink';
 import useLoginModal from '@/app/hooks/useLoginModal';
 import useSignupModal from '@/app/hooks/useSignupModal';
-import LogoutButton from '../LogoutButton.tsx';
+import LogoutButton from '../LogoutButton';
 
 interface UserNavProps {
   userId?: string | null;
