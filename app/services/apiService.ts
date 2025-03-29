@@ -25,6 +25,7 @@ const apiService = {
   },
   post: async function (url: string, data: any): Promise<any> {
     console.log('post', url);
+    console.log('data: ', data);
     const token = await getAccessToken();
     console.log('Token enviado: ', token);
     return new Promise((resolve, reject) => {
@@ -32,7 +33,9 @@ const apiService = {
         method: 'POST',
         body: data,
         headers: {
-          Authorization: `Bearer ${token}`,
+          // Accept: 'application/json',
+          // 'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
       })
         .then((response) => response.json())
